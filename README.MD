@@ -1,4 +1,4 @@
-#Project Description
+# Project Description
 This Project is a homework assignment to learn how to get Pycharm setup with Docker, Flask, MySQL
 
 # SQL Data Screenshot
