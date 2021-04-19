@@ -28,7 +28,7 @@ def cities_import() -> List[Dict]:
 
 @app.route('/')
 def index():
-    user = {'username': 'Miguel'}
+    user = {'username': 'Jay'}
     cities_data = cities_import()
 
     return render_template('index.html', title='Home', user=user, cities=cities_data)
@@ -42,4 +42,4 @@ def cities() -> str:
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0',debug=True)
