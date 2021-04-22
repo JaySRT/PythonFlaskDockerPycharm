@@ -1,29 +1,30 @@
 {% extends "layout.html" %}
 {% block content %}
-<form action="/cities/new" method="POST">
+<form action="/Awardee/new" method="POST">
     <div class="row">
         <div class="col">
-            <label for="fldsrno">Sr. No.</label>
-            <input id="fldsrno" type="text" class="form-control" placeholder="Sr. No." name="fldsrno">
+            <label for="srno">Sr. No.</label>
+            <input id="srno" type="text" class="form-control" placeholder="Sr. No." name="srno">
         </div>
         <div class="col">
-            <label for="fldYear">Year</label>
-            <input id="fldYear" type="text" class="form-control" placeholder="Year"
-                   name="fldYear">
+            <label for="Year">Year Awarded</label>
+            <input id="Year" type="text" class="form-control" placeholder="Year"
+                   name="Year">
         </div>
         <div class="col">
-            <label for="fldAge">Age</label>
-            <input id="fldAge" type="text" class="form-control" placeholder="Age" name="fldAge">
+            <label for="Age">Age</label>
+            <input id="Age" type="text" class="form-control" placeholder="Age" name="Age">
         </div>
     </div>
+
     <div class="row">
         <div class="col">
-            <label for="fldName">Name</label>
-            <input id="fldName" type="text" class="form-control" placeholder="Name" name="fldName">
+            <label for="Name">Name</label>
+            <input id="Name" type="text" class="form-control" placeholder="Name" name="Name">
         </div>
         <div class="col">
-            <label for="fldMovie">Movie</label>
-            <input id="fldMovie" type="text" class="form-control" placeholder="Movie" name="fldMovie">
+            <label for="Movie">Movie</label>
+            <input id="Movie" type="text" class="form-control" placeholder="Movie" name="Movie">
         </div>
     </div>
     <button type="submit" class="btn btn-success">Success</button>

@@ -2,20 +2,20 @@
 {% block content %}
 
 <div class="card" class="m-5 p-2">
-    <h5 class="card-title">{{ city.fldName }} - {{ city.fldName }}</h5>
+    <h5 class="card-title">{{ Awardee.Name }} - {{ Awardee.Name }}</h5>
 
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">Sr. No.: {{ city.fldsrno }}</li>
-        <li class="list-group-item">Year: {{ city.fldYear }}</li>
-        <li class="list-group-item">Age: {{ city.fldAge }}</li>
-        <li class="list-group-item">Name: {{ city.fldName }}</li>
-        <li class="list-group-item">Movie: {{ city.fldMovie }}</li>
+        <li class="list-group-item">Sr. No.: {{ Awardee.srno }}</li>
+        <li class="list-group-item">Year: {{ Awardee.Year }}</li>
+        <li class="list-group-item">Age: {{ Awardee.Age }}</li>
+        <li class="list-group-item">Name: {{ Awardee.Name }}</li>
+        <li class="list-group-item">Movie: {{ Awardee.Movie }}</li>
     </ul>
     <div class="card-body">
-        <a href="/edit/{{city.id}}" class="card-link btn btn-primary">edit</a>
+        <a href="/edit/{{Awardee.Name}}" class="card-link btn btn-primary">edit</a>
     </div>
 </div>
-<form action="/delete/{{city.id}}" method="post"><button type="submit" class="btn btn-danger">Delete</button></form>
+<form action="/delete/{{Awardee.Name}}" method="post"><button type="submit" class="btn btn-danger">Delete</button></form>
 
 
 {% endblock %}
