@@ -19,4 +19,4 @@ This Project is a homework assignment to create a webApp setting up Pycharm with
 ### 6) YOUR project running correctly in the browser displaying a deleted record added to your homepage
 ![Part 3: Database Project](screenshots/Capture36.png)
 
-## Link to the Submission Word file: ![Click Here!](Part_3-webapp.docx)
+## Link to the Submission Word file: [Click Here!](Part_3-webapp.docx)
