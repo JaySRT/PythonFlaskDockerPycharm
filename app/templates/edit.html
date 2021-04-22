@@ -1,33 +1,33 @@
 {% extends "layout.html" %}
 {% block content %}
-<form action="/edit/{{Awardee.Name}}" method="post">
+<form action="/edit/{{award.index}}" method="post">
     <div class="row">
         <div class="col">
-            <label for="srno">Sr. No.</label>
-            <input id="srno" type="text" class="form-control" placeholder="Sr. No." name="srno"
-                   value="{{Awardee.srno}}">
+            <label for="index">Sr. No.</label>
+            <input id="index" type="text" class="form-control" placeholder="index" name="index"
+                   value="{{award.index}}">
         </div>
         <div class="col">
-            <label for="Year">Year</label>
-            <input id="Year" type="text" class="form-control" placeholder="Year"
-                   name="Year" value="{{Awardee.Year}}">
+            <label for="year">year</label>
+            <input id="year" type="text" class="form-control" placeholder="year"
+                   name="year" value="{{award.year}}">
         </div>
         <div class="col">
-            <label for="Age">Age</label>
-            <input id="Age" type="text" class="form-control" placeholder="Age" name="Age"
-                   value="{{Awardee.Age}}">
+            <label for="age">age</label>
+            <input id="age" type="text" class="form-control" placeholder="age" name="age"
+                   value="{{award.age}}">
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <label for="Name">Name</label>
-            <input id="Name" type="text" class="form-control" placeholder="Name"
-                   name="Name" value="{{Awardee.Name}}">
+            <label for="name">name</label>
+            <input id="name" type="text" class="form-control" placeholder="name"
+                   name="name" value="{{award.name}}">
         </div>
         <div class="col">
-            <label for="Movie">Movie</label>
-            <input id="Movie" type="text" class="form-control" placeholder="Movie" name="Movie"
-                   value="{{Awardee.Movie}}">
+            <label for="movie">movie</label>
+            <input id="movie" type="text" class="form-control" placeholder="movie" name="movie"
+                   value="{{award.movie}}">
         </div>
     </div>
     <button type="submit" class="btn btn-success">Save</button>
