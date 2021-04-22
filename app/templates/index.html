@@ -8,16 +8,17 @@
         <th scope="col">Age</th>
         <th scope="col">Name</th>
         <th scope="col">Movie</th>
+
     </tr>
     </thead>
     <tbody>
     {% for city in cities %}
     <tr>
-        <td><a href="view/{{city.id}}">{{ city.fldsrno }}</a></td>
-        <td>{{ city.fldYear }}</td>
-        <td>{{ city.fldAge }}</td>
-        <td>{{ city.fldName }}</td>
-        <td>{{ city.fldMovie }}</td>
+        <td><a href="view/{{Awardee.Name}}">{{ Awardee.srno }}</a></td>
+        <td>{{ Awardee.Year }}</td>
+        <td>{{ Awardee.Age }}</td>
+        <td>{{ Awardee.Name }}</td>
+        <td>{{ Awardee.Movie }}</td>
     </tr>
     {% endfor %}
     </tbody>
