@@ -3,3 +3,4 @@ mysql-connector
 simplejson
 mysql
 flask-mysql
+pymysql
