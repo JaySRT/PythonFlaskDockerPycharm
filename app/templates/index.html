@@ -12,13 +12,13 @@
     </tr>
     </thead>
     <tbody>
-    {% for city in cities %}
+    {% for award in Names %}
     <tr>
-        <td><a href="view/{{Awardee.Name}}">{{ Awardee.srno }}</a></td>
-        <td>{{ Awardee.Year }}</td>
-        <td>{{ Awardee.Age }}</td>
-        <td>{{ Awardee.Name }}</td>
-        <td>{{ Awardee.Movie }}</td>
+        <td><a href="view/{{award.name}}">{{ award.index }}</a></td>
+        <td>{{ award.year }}</td>
+        <td>{{ award.age }}</td>
+        <td>{{ award.name }}</td>
+        <td>{{ award.movie }}</td>
     </tr>
     {% endfor %}
     </tbody>
