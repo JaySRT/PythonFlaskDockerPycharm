@@ -12,7 +12,7 @@ app.config['MYSQL_DATABASE_HOST'] = 'db'
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
 app.config['MYSQL_DATABASE_PORT'] = 3306
-app.config['MYSQL_DATABASE_DB'] = 'oscar_age_male'
+app.config['MYSQL_DATABASE_DB'] = 'oscarsData'
 mysql.init_app(app)
 
 
@@ -20,7 +20,7 @@ mysql.init_app(app)
 def index():
     user = {'username': 'Oscar Winners Male'}
     cursor = mysql.get_db().cursor()
-    cursor.execute('SELECT * FROM oscar_age_male')
+    cursor.execute('SELECT * FROM male')
     result = cursor.fetchall()
     return render_template('index.html', title='Home', user=user, Names=result)
 
@@ -28,26 +28,25 @@ def index():
 @app.route('/view/<string:Name>', methods=['GET'])
 def record_view(Name):
     cursor = mysql.get_db().cursor()
-    cursor.execute('SELECT * FROM oscar_age_male WHERE Name=%s', Name)
+    cursor.execute('SELECT * FROM male WHERE Name=%s', Name)
     result = cursor.fetchall()
-    return render_template('view.html', title='View Form', Awardee=result[0])
+    return render_template('view.html', title='View Form', award=result[0])
 
 
 @app.route('/edit/<string:Name>', methods=['GET'])
 def form_edit_get(Name):
     cursor = mysql.get_db().cursor()
-    cursor.execute('SELECT * FROM oscar_age_male WHERE Name=%s', Name)
+    cursor.execute('SELECT * FROM male WHERE Name=%s', Name)
     result = cursor.fetchall()
-    return render_template('edit.html', title='Edit Form', Awardee=result[0])
+    return render_template('edit.html', title='Edit Form', award=result[0])
 
 
 @app.route('/edit/<string:Name>', methods=['POST'])
 def form_update_post(Name):
     cursor = mysql.get_db().cursor()
-    inputData = (request.form.get('srno'), request.form.get('Year'), request.form.get('Age'),
-                 request.form.get('Name'), request.form.get('Movie'), Name)
-    sql_update_query = """UPDATE oscar_age_male t SET t.srno = %s, t.Year = %s, t.Age = %s, t.Name = 
-    %s, t.Movie = %s """
+    inputData = (request.form.get('index'), request.form.get('year'), request.form.get('age'),
+                 request.form.get('name'), request.form.get('movie'), Name)
+    sql_update_query = """UPDATE male t SET t.index = %s, t.year = %s, t.age = %s, t.name = %s, t.movie = %s WHERE t.name = %s"""
     cursor.execute(sql_update_query, inputData)
     mysql.get_db().commit()
     return redirect("/", code=302)
@@ -61,18 +60,18 @@ def form_insert_get():
 @app.route('/Names/new', methods=['POST'])
 def form_insert_post():
     cursor = mysql.get_db().cursor()
-    inputData = (request.form.get('srno'), request.form.get('Year'), request.form.get('Age'),
-                 request.form.get('Name'), request.form.get('Movie'),)
-    sql_insert_query = """INSERT INTO oscar_age_male (srno,Year,Age,Name,Movie) 
-    VALUES (%s, %s, %s, %s, %s) """
+    inputData = (request.form.get('index'), request.form.get('year'), request.form.get('age'),
+                 request.form.get('name'), request.form.get('movie'))
+    sql_insert_query = """INSERT INTO male (index,year,age,name,movie) VALUES (%s, %s,%s, %s,%s)"""
     cursor.execute(sql_insert_query, inputData)
     mysql.get_db().commit()
     return redirect("/", code=302)
 
+
 @app.route('/delete/<string:Name>', methods=['POST'])
 def form_delete_post(Name):
     cursor = mysql.get_db().cursor()
-    sql_delete_query = """DELETE FROM oscar_age_male WHERE Name = %s """
+    sql_delete_query = """DELETE FROM male WHERE name = %s """
     cursor.execute(sql_delete_query, Name)
     mysql.get_db().commit()
     return redirect("/", code=302)
@@ -81,37 +80,37 @@ def form_delete_post(Name):
 @app.route('/api/v1/Names', methods=['GET'])
 def api_browse() -> str:
     cursor = mysql.get_db().cursor()
-    cursor.execute('SELECT * FROM oscar_age_male')
+    cursor.execute('SELECT * FROM male')
     result = cursor.fetchall()
     json_result = json.dumps(result);
     resp = Response(json_result, status=200, mimetype='application/json')
     return resp
 
 
-@app.route('/api/v1/Names/<string:Name>', methods=['GET'])
-def api_retrieve(Name) -> str:
+@app.route('/api/v1/Names/<int:Index>', methods=['GET'])
+def api_retrieve(Index) -> str:
     cursor = mysql.get_db().cursor()
-    cursor.execute('SELECT * FROM oscar_age_male WHERE Name=%s', Name)
+    cursor.execute('SELECT * FROM male WHERE `index`=%s', Index)
     result = cursor.fetchall()
     json_result = json.dumps(result);
     resp = Response(json_result, status=200, mimetype='application/json')
     return resp
 
 
-@app.route('/api/v1/Names/', methods=['POST'])
-def api_add() -> str:
+@app.route('/api/v1/Names/<string:Name>', methods=['POST'])
+def api_add(Name) -> str:
     resp = Response(status=201, mimetype='application/json')
     return resp
 
 
 @app.route('/api/v1/Names/<string:Name>', methods=['PUT'])
-def api_edit(name) -> str:
+def api_edit(Name) -> str:
     resp = Response(status=201, mimetype='application/json')
     return resp
 
 
 @app.route('/api/Names/<string:Name>', methods=['DELETE'])
-def api_delete(name) -> str:
+def api_delete(Name) -> str:
     resp = Response(status=210, mimetype='application/json')
     return resp
 
