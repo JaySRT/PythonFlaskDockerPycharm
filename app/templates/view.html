@@ -2,20 +2,20 @@
 {% block content %}
 
 <div class="card" class="m-5 p-2">
-    <h5 class="card-title">{{ Awardee.Name }} - {{ Awardee.Name }}</h5>
+    <h5 class="card-title">{{ award.name }}</h5>
 
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">Sr. No.: {{ Awardee.srno }}</li>
-        <li class="list-group-item">Year: {{ Awardee.Year }}</li>
-        <li class="list-group-item">Age: {{ Awardee.Age }}</li>
-        <li class="list-group-item">Name: {{ Awardee.Name }}</li>
-        <li class="list-group-item">Movie: {{ Awardee.Movie }}</li>
+        <li class="list-group-item">Sr. No.: {{ award.index }}</li>
+        <li class="list-group-item">Year: {{ award.year }}</li>
+        <li class="list-group-item">Age: {{ award.age }}</li>
+        <!--<li class="list-group-item">Name: {{ award.name }}</li>-->
+        <li class="list-group-item">Movie: {{ award.movie }}</li>
     </ul>
     <div class="card-body">
-        <a href="/edit/{{Awardee.Name}}" class="card-link btn btn-primary">edit</a>
+        <a href="/edit/{{award.name}}" class="card-link btn btn-primary">edit</a>
     </div>
 </div>
-<form action="/delete/{{Awardee.Name}}" method="post"><button type="submit" class="btn btn-danger">Delete</button></form>
+<form action="/delete/{{award.name}}" method="post"><button type="submit" class="btn btn-danger">Delete</button></form>
 
 
 {% endblock %}
