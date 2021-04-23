@@ -10,4 +10,4 @@ This Project is a homework assignment to learn how to get Pycharm setup with Doc
 ### 3) Part 2 Screenshot - App running on browser
 ![Part 2: Database Project](screenshots/Capture3-part2-ss.png)
 
-### 4) Link to Part 3: [Click Here]()
+### 4) Link to Part 3: [Click Here](https://github.com/JaySRT/PythonFlaskDockerPycharm/tree/Flask_oscar_dataset_Docker_mysql)
