@@ -97,20 +97,41 @@ def api_retrieve(Index) -> str:
     return resp
 
 
-@app.route('/api/v1/Names/<string:Name>', methods=['POST'])
-def api_add(Name) -> str:
+@app.route('/api/v1/Names/<string:Name>', methods=['PUT'])
+def api_edit(Name) -> str:
+    cursor = mysql.get_db().cursor()
+    content = request.json
+    inputData = (content['index'], content['year'], content['age'],
+                 content['name'], content['movie'], Name)
+    sql_update_query = """UPDATE male t SET t.index = %s, t.year = %s, t.age = %s, t.name = 
+            %s, t.movie = %s WHERE t.name = %s """
+    cursor.execute(sql_update_query, inputData)
+    mysql.get_db().commit()
     resp = Response(status=201, mimetype='application/json')
     return resp
 
 
-@app.route('/api/v1/Names/<string:Name>', methods=['PUT'])
-def api_edit(Name) -> str:
+@app.route('/api/v1/Names/<string:Name>', methods=['POST'])
+def api_add(Name) -> str:
+
+    content = request.json
+
+    cursor = mysql.get_db().cursor()
+    inputData = (content['index'], content['year'], content['age'],
+                 content['name'], content['movie'])
+    sql_insert_query = """INSERT INTO male (`index`,year,age,name,movie) VALUES (%s, %s,%s, %s,%s) """
+    cursor.execute(sql_insert_query, inputData)
+    mysql.get_db().commit()
     resp = Response(status=201, mimetype='application/json')
     return resp
 
 
 @app.route('/api/Names/<string:Name>', methods=['DELETE'])
 def api_delete(Name) -> str:
+    cursor = mysql.get_db().cursor()
+    sql_delete_query = """DELETE FROM male WHERE name = %s """
+    cursor.execute(sql_delete_query, Name)
+    mysql.get_db().commit()
     resp = Response(status=210, mimetype='application/json')
     return resp
 
