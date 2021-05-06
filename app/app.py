@@ -93,33 +93,33 @@ def api_retrieve(index) -> str:
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM male WHERE `index`=%s', index)
     result = cursor.fetchall()
-    json_result = json.dumps(result);
+    json_result = json.dumps(result)
     resp = Response(json_result, status=200, mimetype='application/json')
     return resp
 
 
-@app.route('/api/v1/Names/<int:index>', methods=['PUT'])
-def api_edit(index) -> str:
+@app.route('/api/v1/Names/<string:name>', methods=['PUT'])
+def api_edit(name) -> str:
     cursor = mysql.get_db().cursor()
     content = request.json
     inputData = (content['index'], content['year'], content['age'],
-                 content['name'], content['movie'], index)
+                 content['name'], content['movie'], name)
     sql_update_query = """UPDATE male t SET t.index = %s, t.year = %s, t.age = %s, t.name = 
-            %s, t.movie = %s WHERE t.index = %s """
+            %s, t.movie = %s WHERE t.name = %s """
     cursor.execute(sql_update_query, inputData)
     mysql.get_db().commit()
     resp = Response(status=201, mimetype='application/json')
     return resp
 
 
-@app.route('/api/v1/Names/<int:index>', methods=['POST'])
-def api_add(index) -> str:
+@app.route('/api/v1/Names', methods=['POST'])
+def api_add() -> str:
 
     content = request.json
 
     cursor = mysql.get_db().cursor()
     inputData = (content['index'], content['year'], content['age'],
-                 content['name'], content['movie'], index)
+                 content['name'], content['movie'])
     sql_insert_query = """INSERT INTO male (`index`,year,age,name,movie) VALUES (%s, %s,%s, %s,%s) """
     cursor.execute(sql_insert_query, inputData)
     mysql.get_db().commit()
@@ -127,13 +127,13 @@ def api_add(index) -> str:
     return resp
 
 
-@app.route('/api/Names/<int:index>', methods=['DELETE'])
-def api_delete(index) -> str:
+@app.route('/api/v1/Names/<string:name>', methods=['DELETE'])
+def api_delete(name) -> str:
     cursor = mysql.get_db().cursor()
-    sql_delete_query = """DELETE FROM male WHERE `index` = %s """
-    cursor.execute(sql_delete_query, index)
+    sql_delete_query = """DELETE FROM male WHERE name = %s """
+    cursor.execute(sql_delete_query, name)
     mysql.get_db().commit()
-    resp = Response(status=210, mimetype='application/json')
+    resp = Response(status=200, mimetype='application/json')
     return resp
 
 

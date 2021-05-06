@@ -12,10 +12,10 @@
         <li class="list-group-item">Movie: {{ award.movie }}</li>
     </ul>
     <div class="card-body">
-        <a href="/edit/{{award.index}}" class="card-link btn btn-primary">edit</a>
+        <a href="/edit/{{award.name}}" class="card-link btn btn-primary">edit</a>
     </div>
 </div>
-<form action="/delete/{{award.index}}" method="post"><button type="submit" class="btn btn-danger">Delete</button></form>
+<form action="/delete/{{award.name}}" method="post"><button type="submit" class="btn btn-danger">Delete</button></form>
 
 
 {% endblock %}
